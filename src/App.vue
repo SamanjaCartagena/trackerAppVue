@@ -6,7 +6,7 @@ import TheWelcome from './components/TheWelcome.vue'
 
 <template>
 <div id="app">
-  <img v-bind:src={picture} alt="">
+  <img v-bind:src="picture" alt="">
   <h1>Hello {{firstName}}{{lastName}}</h1>
   <h3>Email:{{email}}</h3>
   <button>Get random user</button>
@@ -22,7 +22,7 @@ data(){
     lastname:'Doe',
     email:'john@gmail.com',
     gender:'male',
-    picture:'https://randomuser.me/api/portraits/men/10.jpg'
+    picture:"url('https://randomuser.me/api/portraits/men/10.jpg')"
   }
 }
 
