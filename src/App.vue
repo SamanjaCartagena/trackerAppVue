@@ -6,10 +6,10 @@ import TheWelcome from './components/TheWelcome.vue'
 
 <template>
 <div id="app2">
-  <img v-bind:src="picture" :alt="`${firstName} ${lastName}`"/>
+  <img :class="gender"  v-bind:src="picture" :alt="`${firstName} ${lastName}`"/>
   <h1>Hello {{firstName}}{{lastName}}</h1>
   <h3>Email:{{email}}</h3>
-  <button>Get random user</button>
+  <button v-on:click="getUser()" :class="gender">Get random user</button>
 </div>
 </template>
 
@@ -19,10 +19,22 @@ export default {
 data(){
   return{
     firstName:'John',
-    lastname:'Doe',
+    lastName:'Doe',
     email:'john@gmail.com',
     gender:'male',
     picture:'https://randomuser.me/api/portraits/men/10.jpg'
+  }
+},
+methods:{
+  async getUser(){
+   const res = await fetch('https://randomuser.me/api')
+   const {results} = await res.json()
+   console.log(results)
+    this.firstName=results[0].name.first
+    this.lastName=results[0].name.last
+    this.email=results[0].email
+    this.gender=results[0].gender
+    this.picture=results[0].picture.large
   }
 }
 
@@ -38,10 +50,27 @@ data(){
   color:black;
 }
 button{
-  background-color: black;
+  cursor:pointer;
+  display:inline-block;
+  background: #333;
   color:white;
-  border:1px solid white;
-  padding:10px;
+  font-size: 18px;
+  border:0;
+  padding: 1rem 1.5rem;
+}
+.male{
+  border-color:steelblue;
+  background-color: steelblue;
+}
+.female{
+  border-color:pink;
+  background-color: pink;
+  color:#333;
+}
+img{
+  border-radius:50%;
+  border:5px #333 solid;
+  margin-bottom:1rem;
 }
 </style>
 
