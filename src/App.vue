@@ -5,8 +5,8 @@ import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-<div id="app">
-  <img v-bind:src="picture" alt="">
+<div id="app2">
+  <img v-bind:src="picture" :alt="`${firstName} ${lastName}`"/>
   <h1>Hello {{firstName}}{{lastName}}</h1>
   <h3>Email:{{email}}</h3>
   <button>Get random user</button>
@@ -22,7 +22,7 @@ data(){
     lastname:'Doe',
     email:'john@gmail.com',
     gender:'male',
-    picture:"url('https://randomuser.me/api/portraits/men/10.jpg')"
+    picture:'https://randomuser.me/api/portraits/men/10.jpg'
   }
 }
 
@@ -30,7 +30,7 @@ data(){
 </script>
 
 <style>
-#app{
+#app2{
   text-align: center;
   height:900px;
   width: 100%;
